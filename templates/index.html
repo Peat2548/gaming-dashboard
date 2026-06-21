@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="stats">
+
+        <div class="stat-card">
+            🎮 Games
+            <h2>{{ total_games }}</h2>
+        </div>
+
+        <div class="stat-card">
+            📈 Avg Progress
+            <h2>{{ avg_progress }}%</h2>
+        </div>
+
+    </div>
+
+    <h1>🎮 Gaming Dashboard</h1>
+
+    <div class="nav-right">
+        <span>👋 {{ session['user'] }}</span>
+
+        <a href="/add">
+            <button class="add-btn">➕ Add Game</button>
+        </a>
+
+        <a href="/logout">
+            <button class="logout-btn">Logout</button>
+        </a>
+    </div>
+</div>
+
+<div class="container">
+
+    {% for game in games %}
+
+    <div class="card">
+
+        <img
+            src="{{ url_for('static', filename='images/' + game.image) }}"
+            class="game-image"
+        >
+
+        <img
+            src="{{ url_for('static', filename='images/ranks/' + game.rank_image) }}"
+            class="rank-image"
+        >
+
+        <h2>{{ game.game }}</h2>
+
+        {% if game.game_type == "level" %}
+
+        <p>Current Level : {{ game.current }}</p>
+        <p>Goal Level : {{ game.goal }}</p>
+
+        {% else %}
+
+        <p>Current Rank : {{ game.current }}</p>
+        <p>Goal Rank : {{ game.goal }}</p>
+
+        {% endif %}
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                style="width: {{ game.progress }}%">
+            </div>
+
+        </div>
+
+        <p>{{ game.progress }}%</p>
+
+        {% if game.goal_completed %}
+
+        <p class="goal-badge">
+            🏆 Goal Completed
+        </p>
+
+        {% endif %}
+
+        <div class="buttons">
+
+            <a href="/edit/{{ game.id }}">
+                <button class="edit-btn">Edit</button>
+            </a>
+
+            <a href="/delete/{{ game.id }}"
+               onclick="return confirm('Delete this game?')">
+                <button class="delete-btn">Delete</button>
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

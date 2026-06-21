@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Game</title>
+    <link rel="stylesheet" href="/static/style.css"> 
+</head>
+<body>
+
+    <div class="container">
+        <div class="card" style="width: 400px;">
+            <h2>Add New Game</h2>
+            
+            <form method="POST">
+                
+                <div class="input-group">
+
+                    <label>Game</label>
+
+                    <select id="game" name="game" onchange="changeGame()">
+
+                        <option>Valorant</option>
+                        <option>RoV</option>
+                        <option>Line Rangers</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Current</label>
+
+                    <div id="current-container"></div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Goal</label>
+
+                    <div id="goal-container"></div>
+
+                </div>
+
+                <button type="submit" class="add-btn" style="width: 100%; margin-top: 10px;">
+                    Add Game
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+<script>
+
+function changeGame(){
+
+    let game =
+        document.getElementById("game").value;
+
+    let current =
+        document.getElementById("current-container");
+
+    let goal =
+        document.getElementById("goal-container");
+
+    if(game === "Valorant"){
+
+        let currentRanks = `
+        <select name="value">
+            <option>Iron 1</option>
+            <option>Iron 2</option>
+            <option>Iron 3</option>
+            <option>Bronze 1</option>
+            <option>Bronze 2</option>
+            <option>Bronze 3</option>
+            <option>Silver 1</option>
+            <option>Silver 2</option>
+            <option>Silver 3</option>
+            <option>Gold 1</option>
+            <option>Gold 2</option>
+            <option>Gold 3</option>
+            <option>Platinum 1</option>
+            <option>Platinum 2</option>
+            <option>Platinum 3</option>
+            <option>Diamond 1</option>
+            <option>Diamond 2</option>
+            <option>Diamond 3</option>
+            <option>Ascendant 1</option>
+            <option>Ascendant 2</option>
+            <option>Ascendant 3</option>
+            <option>Immortal 1</option>
+            <option>Immortal 2</option>
+            <option>Immortal 3</option>
+            <option>Radiant</option>
+        </select>
+        `;
+
+        let goalRanks = `
+        <select name="goal">
+            <option>Iron 1</option>
+            <option>Iron 2</option>
+            <option>Iron 3</option>
+            <option>Bronze 1</option>
+            <option>Bronze 2</option>
+            <option>Bronze 3</option>
+            <option>Silver 1</option>
+            <option>Silver 2</option>
+            <option>Silver 3</option>
+            <option>Gold 1</option>
+            <option>Gold 2</option>
+            <option>Gold 3</option>
+            <option>Platinum 1</option>
+            <option>Platinum 2</option>
+            <option>Platinum 3</option>
+            <option>Diamond 1</option>
+            <option>Diamond 2</option>
+            <option>Diamond 3</option>
+            <option>Ascendant 1</option>
+            <option>Ascendant 2</option>
+            <option>Ascendant 3</option>
+            <option>Immortal 1</option>
+            <option>Immortal 2</option>
+            <option>Immortal 3</option>
+            <option>Radiant</option>
+        </select>
+        `;
+
+        current.innerHTML = currentRanks;
+        goal.innerHTML = goalRanks;
+    }
+
+    else if(game === "RoV"){
+
+        let rov = `
+        <select name="value">
+            <option>Bronze</option>
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Platinum</option>
+            <option>Diamond</option>
+            <option>Conqueror</option>
+        </select>
+        `;
+
+        let rovGoal = `
+        <select name="goal">
+            <option>Bronze</option>
+            <option>Silver</option>
+            <option>Gold</option>
+            <option>Platinum</option>
+            <option>Diamond</option>
+            <option>Conqueror</option>
+        </select>
+        `;
+
+        current.innerHTML = rov;
+        goal.innerHTML = rovGoal;
+    }
+
+    else{
+
+        current.innerHTML =
+        `<input type="number"
+                name="value"
+                placeholder="Current Level">`;
+
+        goal.innerHTML =
+        `<input type="number"
+                name="goal"
+                placeholder="Goal Level">`;
+    }
+
+}
+
+changeGame();
+
+</script>
+
+</body>
+</html>
